@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🛒 Review Insights</h1>
+        <p class="subtitle">Enter an Amazon review to analyze customer sentiment.</p>
+
+        <form method="POST">
+            <textarea 
+                name="review" 
+                placeholder="Paste your product review here..." 
+                required>{{ review }}</textarea>
+            <button type="submit">Analyze Sentiment</button>
+        </form>
+
+        {% if sentiment %}
+            <div class="result-box">
+                {% if sentiment == "Positive" %}
+                    <h2 class="positive">😊 {{ sentiment }} Sentiment</h2>
+                {% else %}
+                    <h2 class="negative">😞 {{ sentiment }} Sentiment</h2>
+                {% endif %}
+                <a href="/" class="clear-btn">Try another</a>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
